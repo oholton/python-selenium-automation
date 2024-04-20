@@ -9,7 +9,8 @@ SEARCH_RESULT = (By.XPATH, "//div[@data-test='resultsHeading']")
 SEARCH_INPUT = (By.ID, 'search')
 SEARCH_BUTTON = (By.XPATH, "//button[@type='submit']")
 
-@then('Verify search results are for {searched_item}')
-def verify_search(context, searched_item):
-    actual_text = context.driver.find_element(*SEARCH_RESULT).text
-    assert searched_item in actual_text, f"Error! Text {searched_item} not found in {actual_text}"
+@then('Verify search results are for {expected_item}')
+def verify_search(context, expected_item):
+    # actual_text = context.driver.find_element(*SEARCH_RESULT).text
+    # assert searched_item in actual_text, f"Error! Text {searched_item} not found in {actual_text}"
+    context.app.search_results_page.verify_search(expected_item)

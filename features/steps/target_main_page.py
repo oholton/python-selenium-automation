@@ -11,14 +11,15 @@ CART_BUTTON = (By.CSS_SELECTOR, "a[data-test='@web/CartLink']")
 
 @given('Open target main page')
 def open_target(context):
-    context.driver.get('https://www.target.com/')
+    # context.driver.get('https://www.target.com/')
+    context.app.main_page.open_main()
 
 #enter search
 @when('Search for {item}')
 def search_item(context, item):
-    context.driver.find_element(*SEARCH_INPUT).send_keys(item)
-    context.driver.find_element(*SEARCH_BUTTON).click()
-
+    # context.driver.find_element(*SEARCH_INPUT).send_keys(item)
+    # context.driver.find_element(*SEARCH_BUTTON).click()
+    context.app.header.search_product(item)
 @when('Click on cart icon')
 def click_on_cart(context):
     context.driver.find_element(*CART_BUTTON).click()
