@@ -1,28 +1,26 @@
 from behave import given, when, then
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 from time import sleep
+from pages.main_page import Base
 
 SEARCH_INPUT = (By.ID, 'search')
 SEARCH_BUTTON = (By.XPATH, "//button[@type='submit']")
 CART_BUTTON = (By.CSS_SELECTOR, "a[data-test='@web/CartLink']")
+SIGN_IN_ICON = (By.XPATH, "//span[contains(@class, 'ListItemText') and text()='Sign in']")
 
 @given('Open target main page')
 def open_target(context):
-    # context.driver.get('https://www.target.com/')
     context.app.main_page.open_main()
 
 #enter search
 @when('Search for {item}')
 def search_item(context, item):
-    # context.driver.find_element(*SEARCH_INPUT).send_keys(item)
-    # context.driver.find_element(*SEARCH_BUTTON).click()
     context.app.header.search_product(item)
+
 @when('Click on cart icon')
-def click_on_cart(context):
-    context.driver.find_element(*CART_BUTTON).click()
+def click_cart(context):
+    context.app.header.click_cart()
     sleep(2)
 
 sleep(3)
