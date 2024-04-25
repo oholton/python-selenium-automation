@@ -35,3 +35,7 @@ class Base:
 
     def verify_url(self, expected_url, *locator):
         self.wait.until(EC.url_matches(expected_url))
+
+    def wait_to_click(self, *locator):
+        self.wait.until(EC.element_to_be_clickable((locator))).click()
+
