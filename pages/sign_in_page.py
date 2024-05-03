@@ -8,6 +8,12 @@ class SignInPage(Base):
     SIGN_IN_ICON = (By.XPATH, "//span[text()='Sign in']")
     NAV_MENU_SIGN_IN_BTN = (By.XPATH, "//span[contains(@class, 'ListItemText') and text()='Sign in']")
     TERMS_AND_COND_BTN = (By.CSS_SELECTOR, "[aria-label*='terms & conditions']")
+    USERNAME = (By.CSS_SELECTOR, "#username")
+    PASSWORD = (By.CSS_SELECTOR, "#password")
+    INCORRECT_USERNAME = ('asdfghjkl@yahoo.com')
+    INCORRECT_PASSWORD = ('password1234')
+    SIGN_IN_BTN = (By.CSS_SELECTOR, "#login")
+    CANNOT_FIND_ACCOUNT = (By.CSS_SELECTOR, "[data-test*='authAlertDisplay']")
 
 
     def verify_sign_in_form_open(self):
@@ -27,4 +33,25 @@ class SignInPage(Base):
 
     def switch_to_next_window(self):
         self.switch_to_new_window()
+
+    def bad_username_input(self):
+        self.input_text(self.INCORRECT_USERNAME, *self.USERNAME)
+        sleep(3)
+
+
+    def bad_password_input(self):
+        self.input_text(self.INCORRECT_PASSWORD, *self.PASSWORD)
+        sleep(3)
+
+
+    def click_sign_in_btn(self):
+        self.click(*self.SIGN_IN_BTN)
+
+
+    def verify_cannot_signin(self):
+        element = self.find_element(*self.CANNOT_FIND_ACCOUNT)
+        assert element.is_displayed(), "We can't find your account.' message is not shown"
+
+
+
 

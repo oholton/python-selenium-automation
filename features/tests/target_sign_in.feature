@@ -15,3 +15,11 @@ Feature: Target sign in test
    And Switch to the newly opened window
    Then Verify Terms and Conditions page is opened
    And User can close new window and switch back to original
+
+  Scenario: User can't sign in with incorrect login info
+    Given Opens target sign in page
+    When Enter the incorrect username
+    And Enter incorrect password combination
+    Then Click sign in button
+    And Verify that 'We can't find your account.' message is shown
+

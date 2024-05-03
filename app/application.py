@@ -6,6 +6,7 @@ from pages.cart_page import Cart
 from pages.nav_menu import NavMenu
 from pages.sign_in_page import SignInPage
 from pages.terms_and_conditons_page import TermsAndConditions
+from pages.help_page import HelpPage
 
 
 
@@ -18,6 +19,7 @@ class Application:
         self.nav_menu = NavMenu(driver)
         self.sign_in_page = SignInPage(driver)
         self.terms_and_conditions_page = TermsAndConditions(driver)
+        self.help_page = HelpPage(driver)
 
 
 # app = Application(driver)
